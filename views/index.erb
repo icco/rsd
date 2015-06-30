@@ -7,11 +7,11 @@
     <h1>Meet a Recurser!</h1>
 
     <p>
-    Welcome <%= @user.name %>!
+    Welcome <%= @current_user.name %>!
     </p>
 
-    <img src="<%= @user.image %>">
+    <img src="<%= @current_user.image %>">
 
-    <p>Your ID is <%= @user.id %>.</p>
+    <p>Your ID is <a href="/user/<%= @current_user.id %>"><%= @current_user.id %></a>.</p>
   </body>
 </html>

@@ -40,17 +40,19 @@ configure do
   end
 end
 
-get "/" do
+before do
   if session[:uid]
-    @user = User.where(id: session[:uid]).first
-
-    if @user.nil?
-      error 500
-    else
-      erb :index
-    end
+    @current_user = User.where(id: session[:uid]).first
   else
     redirect "/auth/recurse_center"
+  end
+end
+
+get "/" do
+  if @current_user.nil?
+    error 500
+  else
+    erb :index
   end
 end
 
