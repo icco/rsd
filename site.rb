@@ -49,11 +49,9 @@ before %r{^/(?!auth|logout).+} do
 end
 
 get "/" do
-  if @current_user.nil?
-    error 500
-  else
-    erb :index
-  end
+  p session[:uid]
+  p @current_user
+  erb :index
 end
 
 get "/user/:id" do
