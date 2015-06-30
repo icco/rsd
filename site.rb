@@ -40,7 +40,7 @@ configure do
   end
 end
 
-before do
+before %r{^/(?!auth|logout).+} do
   if session[:uid]
     @current_user = User.where(id: session[:uid]).first
   else
