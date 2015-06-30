@@ -40,23 +40,22 @@ configure do
   end
 end
 
-before %r{^/(?!auth|logout).+} do
-  p session[:uid]
+get "/" do
   if session[:uid]
     @current_user = User.where(id: session[:uid]).first
   else
-    p "lets all go to the auth thing"
     redirect "/auth/recurse_center"
   end
-end
 
-get "/" do
-  p session[:uid]
-  p @current_user
   erb :index
 end
 
 get "/user/:id" do
+  if session[:uid]
+    @current_user = User.where(id: session[:uid]).first
+  else
+    redirect "/auth/recurse_center"
+  end
   @user = User.where(id: params[:id]).first
 
   if @user.nil?
@@ -67,6 +66,11 @@ get "/user/:id" do
 end
 
 get "/service/:name" do
+  if session[:uid]
+    @current_user = User.where(id: session[:uid]).first
+  else
+    redirect "/auth/recurse_center"
+  end
   @service = Service.where(name: params[:name]).first
 
   if @service.nil?
@@ -77,10 +81,20 @@ get "/service/:name" do
 end
 
 get "/add" do
+  if session[:uid]
+    @current_user = User.where(id: session[:uid]).first
+  else
+    redirect "/auth/recurse_center"
+  end
   erb :add
 end
 
 post "/add" do
+  if session[:uid]
+    @current_user = User.where(id: session[:uid]).first
+  else
+    redirect "/auth/recurse_center"
+  end
   p params
 
   redirect "/"
