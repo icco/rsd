@@ -81,6 +81,8 @@ get "/add" do
 end
 
 post "/add" do
+  p params
+
   redirect "/"
 end
 
