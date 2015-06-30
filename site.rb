@@ -54,6 +54,34 @@ get "/" do
   end
 end
 
+get "/user/:id" do
+  @user = User.where(id: params[:id]).first
+
+  if @user.nil?
+    error 404
+  else
+    erb :user
+  end
+end
+
+get "/service/:name" do
+  @service = Service.where(name: params[:name]).first
+
+  if @service.nil?
+    error 404
+  else
+    erb :service
+  end
+end
+
+get "/add" do
+  erb :add
+end
+
+post "/add" do
+  redirect "/"
+end
+
 %w(get post).each do |method|
   send(method, "/auth/:provider/callback") do
     # https://github.com/intridea/omniauth/wiki/Auth-Hash-Schema
