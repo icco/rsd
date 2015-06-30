@@ -91,7 +91,7 @@ end
     u = User.find_or_create_by(id: session[:uid])
     u.name = env['omniauth.auth']['info']['name']
     u.image = env['omniauth.auth']['info']['image']
-    u.email = env['omniauth.auth']['info']['email']
+    u.batch = env['omniauth.auth']['info']['batch']['name']
     u.save
 
     redirect "/"
