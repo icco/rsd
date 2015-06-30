@@ -1,0 +1,22 @@
+<html>
+  <head>
+    <title>Recurser Social Directory | User: <%= @user.name %></title>
+    <link rel="stylesheet" href="/css/tachyons.min.css">
+
+  </head>
+  <body>
+    <img src="<%= @user.image %>">
+
+    <h1><%= @user.name %></h1>
+
+    <% if @user.accounts.count == 0 %>
+      <p>This user has no accounts. Which is very sad.</p>
+    <% else %>
+      <ul>
+        <% @user.accounts.each do |a| %>
+          <li><a href="<%= a.uri %>"><%= a.service.name %></a></li>
+        <% end %>
+      </ul>
+    <% end %>
+  </body>
+</html>
