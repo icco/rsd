@@ -1,0 +1,22 @@
+<html>
+  <head>
+    <title>Recurser Social Directory | <%= @service.name %></title>
+    <link rel="stylesheet" href="/css/tachyons.min.css">
+
+  </head>
+  <body>
+    <img src="<%= @service.icon %>">
+
+    <h1><%= @service.name %></h1>
+
+    <% if @service.accounts.count == 0 %>
+      <p>This service has no accounts. Which is very sad, arguably it is also impossible.</p>
+    <% else %>
+      <ul>
+        <% @service.accounts.each do |a| %>
+          <li><a href="<%= a.uri %>"><%= a.user.name %></a></li>
+        <% end %>
+      </ul>
+    <% end %>
+  </body>
+</html>
