@@ -95,7 +95,21 @@ post "/add" do
   else
     redirect "/auth/recurse_center"
   end
-  p params
+
+  service_name = params["service"].lowercase
+  if service_name.empty?
+    error 400
+  end
+  @service = Service.find_or_create_by(name: service_name)
+  @service.save
+
+  @account = Account.new
+  @account.user = @current_user
+  @account.service = @service
+
+  # TODO: Verify params
+  @account.uri = params["uri"]
+  @account.save
 
   redirect "/"
 end
