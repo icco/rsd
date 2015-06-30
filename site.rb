@@ -96,7 +96,7 @@ post "/add" do
     redirect "/auth/recurse_center"
   end
 
-  service_name = params["service"].lowercase
+  service_name = params["service"].downcase
   if service_name.empty?
     error 400
   end
