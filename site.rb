@@ -41,9 +41,11 @@ configure do
 end
 
 before %r{^/(?!auth|logout).+} do
+  p session[:uid]
   if session[:uid]
     @current_user = User.where(id: session[:uid]).first
   else
+    p "lets all go to the auth thing"
     redirect "/auth/recurse_center"
   end
 end
