@@ -47,6 +47,9 @@ get "/" do
     redirect "/auth/recurse_center"
   end
 
+  @services = Service.all
+  @users = User.all
+
   erb :index
 end
 
