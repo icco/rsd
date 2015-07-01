@@ -1,22 +1,25 @@
-<html>
-  <head>
-    <title>Recurser Social Directory | <%= @service.name %></title>
-    <link rel="stylesheet" href="/css/tachyons.min.css">
+<img src="<%= @service.icon %>">
 
-  </head>
-  <body>
-    <img src="<%= @service.icon %>">
+<h3><%= @service.name %></h1>
 
-    <h1><%= @service.name %></h1>
+<div class="dt">
+  <form method="post" action="/add">
+    <input class="pas mam w-100" placeholder="Service Name" name="service" value="<%= @service.name %>" type="hidden"></input>
+    <div class="dtc w-100 pas">
+      <input class="w-100 pas" placeholder="Link to your <%= @service.name %> account" name="uri" type="text"></input>
+    </div>
+    <div class="dtc pas">
+      <button type="submit" class="pas ttu btn btn--blue">Add!</button>
+    </div>
+  </form>
+</div>
 
-    <% if @service.accounts.count == 0 %>
-      <p>This service has no accounts. Which is very sad, arguably it is also impossible.</p>
-    <% else %>
-      <ul>
-        <% @service.accounts.each do |a| %>
-          <li><a href="<%= a.uri %>"><%= a.user.name %></a></li>
-        <% end %>
-      </ul>
+<% if @service.accounts.count == 0 %>
+  <p>This service has no accounts. Which is very sad, arguably it is also impossible.</p>
+<% else %>
+  <ul>
+    <% @service.accounts.each do |a| %>
+      <li><a href="<%= a.uri %>"><%= a.user.name %></a></li>
     <% end %>
-  </body>
-</html>
+  </ul>
+<% end %>
