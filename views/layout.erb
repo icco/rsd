@@ -1,0 +1,20 @@
+<html>
+  <head>
+    <title>Recurser Social Directory</title>
+    <link rel="stylesheet" href="/css/tachyons.min.css">
+  </head>
+  <body>
+    <div class="mw7 center pam lh-copy">
+      <header class="man">
+      <h1 class="f2 lh-title ttu">Meet a Recurser!</h1>
+      <h2 class="f4 lh-title"><a href="/add">Add</a> <a href="/user/<%= @current_user.id %>">You</a></h2>
+      </header>
+
+      <%= yield %>
+
+    </div>
+    <footer class="dark-orange">
+    <small>Built with Mob Programming at RC in July 2015.</small>
+    </footer>
+  </body>
+</html>

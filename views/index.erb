@@ -1,33 +1,19 @@
-<html>
-  <head>
-    <title>Recurser Social Directory</title>
-    <link rel="stylesheet" href="/css/tachyons.min.css">
-  </head>
-  <body>
-    <div class="mw7 center pam lh-copy">
-      <header class="man">
-        <h1 class="f2 lh-title ttu">Meet a Recurser!</h1>
-        <h2 class="f4 lh-title"><a href="/add">Add</a> <a href="/user/<%= @current_user.id %>">You</a></h2>
-      </header>
-      <section id="services">
-        <h3>Services</h3>
+<section id="services">
+<h3>Services</h3>
 
-        <ul>
-          <% @services.each do |s| %>
-            <li><a href="/service/<%= s.name %>"><%= s.name %></a></li>
-          <% end %>
-        </ul>
-      </section>
+<ul>
+  <% @services.each do |s| %>
+    <li><a href="/service/<%= s.name %>"><%= s.name %></a></li>
+  <% end %>
+</ul>
+</section>
 
-      <section id="users">
-        <h3>Users</h3>
+<section id="users">
+<h3>Users</h3>
 
-        <ul>
-          <% @users.each do |u| %>
-            <li><a href="/user/<%= u.id %>"><%= u.name %></a></li>
-          <% end %>
-        </ul>
-      </section>
-    </div>
-  </body>
-</html>
+<ul>
+  <% @users.each do |u| %>
+    <li><a href="/user/<%= u.id %>"><%= u.name %></a></li>
+  <% end %>
+</ul>
+</section>
