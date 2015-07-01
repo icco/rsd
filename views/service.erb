@@ -18,7 +18,7 @@
   <p>This service has no accounts. Which is very sad, arguably it is also impossible.</p>
 <% else %>
   <ul>
-    <% @service.accounts.each do |a| %>
+    <% @service.accounts.sort {|a,b| a.service.name <=> b.service.name }.each do |a| %>
       <li><a href="<%= a.uri %>"><%= a.user.name %></a></li>
     <% end %>
   </ul>

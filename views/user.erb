@@ -4,7 +4,7 @@
   <p>This user has no accounts. Which is very sad.</p>
 <% else %>
   <ul>
-    <% @user.accounts.each do |a| %>
+    <% @user.accounts.sort {|a,b| a.service.name <=> b.service.name }.each do |a| %>
       <li><a href="<%= a.uri %>"><%= a.service.name %></a></li>
     <% end %>
   </ul>
