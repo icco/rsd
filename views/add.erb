@@ -1,16 +1,13 @@
-<html>
-  <head>
-    <title>Recurser Social Directory | Add an Account</title>
-    <link rel="stylesheet" href="/css/tachyons.min.css">
+<h3>Add an Account</h1>
 
-  </head>
-  <body>
-    <h1>Add an Account</h1>
-
-    <form method="post" action="/add">
-      <input name="service" type="text"></input>
-      <input name="uri" type="text"></input>
-      <button type="submit" />
-    </form>
-  </body>
-</html>
+<form method="post" action="/add">
+  <div>
+    <input class="pas mam w-100" placeholder="Service Name" name="service" type="text"></input>
+  </div>
+  <div>
+    <input class="pas mam w-100" placeholder="Link to your account" name="uri" type="text"></input>
+  </div>
+  <div>
+    <button type="submit" class="mam pas ttu btn btn--blue">Add!</button>
+  </div>
+</form>
