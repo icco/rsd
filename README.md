@@ -9,4 +9,8 @@ A Recurser Social Directory.
  - `gem install bundler`
  - `bundle install`
  - `rake db:setup`
- - `env \`cat dev_env\` rake local`
+ -  Run the following and visit http://localhost:9393 (the domain and port are important because recurse.com does matching on the domain requesting authentication).
+ 
+```
+env `cat dev_env` rake local
+```
