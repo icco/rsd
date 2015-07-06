@@ -72,10 +72,11 @@ end
 get "/edit/:user_id/:service_id" do
   if session[:uid]
     @current_user = User.where(id: session[:uid]).first
-    error 403 if session[:uid] != params[:user_id].to_i
   else
     redirect "/auth/recurse_center"
   end
+
+  error 403 if session[:uid] != params[:user_id].to_i
 
   @account = Account.where("user_id = ? AND service_id = ?", params[:user_id], params[:service_id]).first
   @service = Service.find(params[:service_id])
@@ -90,10 +91,11 @@ end
 post "/edit/:user_id/:service_id" do
   if session[:uid]
     @current_user = User.where(id: session[:uid]).first
-    error 403 if session[:uid] != params[:user_id].to_i
   else
     redirect "/auth/recurse_center"
   end
+
+  error 403 if session[:uid] != params[:user_id].to_i
 
   service_name = params["service"].downcase
   if service_name.empty?
