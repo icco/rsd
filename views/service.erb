@@ -5,12 +5,13 @@
 <div class="dt">
   <form method="post" action="/add">
     <input class="pas mam w-100" placeholder="Service Name" name="service" value="<%= @service.name %>" type="hidden"></input>
-    <div class="dtc w-100 pas">
-      <input class="w-100 pas" placeholder="Link to your <%= @service.name %> account" name="uri" type="text"></input>
+    <div>
+      <input class="pas mam w-100" placeholder="Web link to your <%= @service.name %> account" name="uri" type="text"></input>
     </div>
-    <div class="dtc pas">
-      <button type="submit" class="pas ttu btn btn--blue">Add!</button>
+    <div>
+      <input class="pas mam w-100" placeholder="Mobile specific link e.g., rdio://people/username" name="mobile_uri" type="text" value=""/>
     </div>
+    <button type="submit" class="mam pas ttu btn btn--blue">Add!</button>
   </form>
 </div>
 
