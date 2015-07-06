@@ -4,4 +4,5 @@
 $stdout.sync = true
 
 require './site'
+use Rack::Deflater
 run Sinatra::Application
