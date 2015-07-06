@@ -40,13 +40,20 @@ configure do
   end
 end
 
-get "/" do
+# God I love filters!
+before do
+  # pass the filter if still in auth phase
+  pass if /^\/(auth\/|logout).*/.match(request.path_info)
+
+  # setup current_user if the user is logged in
   if session[:uid]
     @current_user = User.where(id: session[:uid]).first
   else
     redirect "/auth/recurse_center"
   end
+end
 
+get "/" do
   @services = Service.all
   @users = User.all
 
@@ -54,12 +61,6 @@ get "/" do
 end
 
 get "/user/:id" do
-  if session[:uid]
-    @current_user = User.where(id: session[:uid]).first
-  else
-    redirect "/auth/recurse_center"
-  end
-
   @user = User.where(id: params[:id]).first
 
   if @user.nil?
@@ -70,12 +71,6 @@ get "/user/:id" do
 end
 
 get "/edit/:user_id/:service_id" do
-  if session[:uid]
-    @current_user = User.where(id: session[:uid]).first
-  else
-    redirect "/auth/recurse_center"
-  end
-
   error 403 if session[:uid] != params[:user_id].to_i
 
   @account = Account.where("user_id = ? AND service_id = ?", params[:user_id], params[:service_id]).first
@@ -89,12 +84,6 @@ get "/edit/:user_id/:service_id" do
 end
 
 post "/edit/:user_id/:service_id" do
-  if session[:uid]
-    @current_user = User.where(id: session[:uid]).first
-  else
-    redirect "/auth/recurse_center"
-  end
-
   error 403 if session[:uid] != params[:user_id].to_i
 
   service_name = params["service"].downcase
@@ -111,11 +100,6 @@ post "/edit/:user_id/:service_id" do
 end
 
 get "/service/:name" do
-  if session[:uid]
-    @current_user = User.where(id: session[:uid]).first
-  else
-    redirect "/auth/recurse_center"
-  end
   @service = Service.where(name: params[:name]).first
 
   if @service.nil?
@@ -126,21 +110,10 @@ get "/service/:name" do
 end
 
 get "/add" do
-  if session[:uid]
-    @current_user = User.where(id: session[:uid]).first
-  else
-    redirect "/auth/recurse_center"
-  end
   erb :add
 end
 
 post "/add" do
-  if session[:uid]
-    @current_user = User.where(id: session[:uid]).first
-  else
-    redirect "/auth/recurse_center"
-  end
-
   service_name = params["service"].downcase
   if service_name.empty?
     error 400

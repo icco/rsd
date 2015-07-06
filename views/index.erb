@@ -1,19 +1,19 @@
 <section id="services">
-<h3>Services</h3>
+  <h3>Services</h3>
 
-<ul>
-  <% @services.each do |s| %>
-    <li><a href="/service/<%= s.name %>"><%= s.name %></a></li>
-  <% end %>
-</ul>
+  <ul>
+    <% @services.each do |s| %>
+      <li><a href="/service/<%= s.name %>"><%= s.name %></a></li>
+    <% end %>
+  </ul>
 </section>
 
 <section id="users">
-<h3>Users</h3>
+  <h3>Users</h3>
 
-<ul>
-  <% @users.each do |u| %>
-    <li><a href="/user/<%= u.id %>"><%= u.name %></a></li>
-  <% end %>
-</ul>
+  <ul>
+    <% @users.each do |u| %>
+      <li><a href="/user/<%= u.id %>"><%= u.name %></a></li>
+    <% end %>
+  </ul>
 </section>
