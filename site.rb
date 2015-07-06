@@ -68,6 +68,42 @@ get "/user/:id" do
   end
 end
 
+get "/edit/:user_id/:service_id" do
+  if session[:uid]
+    @current_user = User.where(id: session[:uid]).first
+  else
+    redirect "/auth/recurse_center"
+  end
+
+  @account = Account.where("user_id = ? AND service_id = ?", params[:user_id], params[:service_id]).first
+  @service = Service.find(params[:service_id])
+  puts params[:service_id]
+  if @account.nil? or @service.nil?
+    error 404
+  else
+    erb :edit
+  end
+end
+
+post "/edit/:user_id/:service_id" do
+  if session[:uid]
+    @current_user = User.where(id: session[:uid]).first
+  else
+    redirect "/auth/recurse_center"
+  end
+
+  service_name = params["service"].downcase
+  if service_name.empty?
+    error 400
+  end
+
+  @account = Account.where("user_id = ? AND service_id = ?", params[:user_id], params[:service_id]).first
+  @account.uri = params["uri"]
+  @account.save
+
+  redirect "/user/" + @params[:user_id]
+end
+
 get "/service/:name" do
   if session[:uid]
     @current_user = User.where(id: session[:uid]).first
