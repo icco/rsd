@@ -59,6 +59,7 @@ get "/user/:id" do
   else
     redirect "/auth/recurse_center"
   end
+
   @user = User.where(id: params[:id]).first
 
   if @user.nil?
@@ -76,10 +77,9 @@ get "/edit/:user_id/:service_id" do
     redirect "/auth/recurse_center"
   end
 
-
   @account = Account.where("user_id = ? AND service_id = ?", params[:user_id], params[:service_id]).first
   @service = Service.find(params[:service_id])
-  puts params[:service_id]
+
   if @account.nil? or @service.nil?
     error 404
   else
