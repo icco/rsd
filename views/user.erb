@@ -4,8 +4,14 @@
   <p>This user has no accounts. Which is very sad.</p>
 <% else %>
   <ul>
-    <% @user.accounts.sort {|a,b| a.service.name <=> b.service.name }.each do |a| %>
-      <li><a href="<%= a.uri %>"><%= a.service.name %></a></li>
+    <% if @current_user.id != @user.id %>
+      <% @user.accounts.sort {|a,b| a.service.name <=> b.service.name }.each do |a| %>
+        <li class="mbs"><a href="<%= a.uri %>"><%= a.service.name %></a></li>
+      <%end %>
+    <% else %>
+      <% @user.accounts.sort {|a,b| a.service.name <=> b.service.name }.each do |a| %>
+        <li class="mbs"><a href="<%= a.uri %>"><%= a.service.name %></a><a class="mls paxs btn btn--xs btn--blue" href="/edit/<%= @user.id %>/<%= a.service_id %>">edit</a></li>
+      <% end %>
     <% end %>
   </ul>
 <% end %>

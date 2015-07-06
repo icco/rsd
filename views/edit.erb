@@ -1,0 +1,13 @@
+<h3>Edit your <%= @service.name %> details</h1>
+
+<form method="post" action="/edit/<%= @account.user_id %>/<%= @service.id %>">
+  <div>
+    <input class="pas mam w-100 grey-out cursor-disabled" placeholder="Service Name" name="service" type="text" value="<%= @service.name %>" readonly="readonly"></input>
+  </div>
+  <div>
+    <input class="pas mam w-100" placeholder="Link to your account" name="uri" type="text" value="<%= @account.uri %>"></input>
+  </div>
+  <div>
+    <button type="submit" class="mam pas ttu btn btn--blue">Update!</button>
+  </div>
+</form>
