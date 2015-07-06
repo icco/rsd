@@ -43,7 +43,7 @@ end
 # God I love filters!
 before do
   # pass the filter if still in auth phase
-  pass if /\/auth\/.*?\/callback/.match(request.path_info)
+  pass if /^\/(auth\/|logout).*/.match(request.path_info)
 
   # setup current_user if the user is logged in
   if session[:uid]
