@@ -71,7 +71,7 @@ end
 get "/edit/:user_id/:service_id" do
   if session[:uid]
     @current_user = User.where(id: session[:uid]).first
-    error 403 if session[:uid] != params[:user_id]
+    error 403 if session[:uid] != params[:user_id].to_i
   else
     redirect "/auth/recurse_center"
   end
@@ -90,7 +90,7 @@ end
 post "/edit/:user_id/:service_id" do
   if session[:uid]
     @current_user = User.where(id: session[:uid]).first
-    error 403 if session[:uid] != params[:user_id]
+    error 403 if session[:uid] != params[:user_id].to_i
   else
     redirect "/auth/recurse_center"
   end
