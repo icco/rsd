@@ -153,6 +153,7 @@ post "/add" do
 
   # TODO: Verify params
   @account.uri = params["uri"]
+  @account.mobile_uri = params["mobile_uri"]
   @account.save
 
   redirect "/"
