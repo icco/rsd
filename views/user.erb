@@ -5,7 +5,7 @@
 <% else %>
   <ul>
     <% @user.accounts.sort {|a,b| a.service.name <=> b.service.name }.each do |a| %>
-      <li><a href="<%= a.uri %>"><%= a.service.name %></a></li>
+      <li class="mbs"><a href="<%= a.uri %>"><%= a.service.name %></a><a class="mls paxs btn btn--xs btn--blue" href="/edit/<%= @user.id %>/<%= a.service_id %>">edit</a></li>
     <% end %>
   </ul>
 <% end %>
