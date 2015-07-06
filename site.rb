@@ -136,12 +136,14 @@ end
 %w(get post).each do |method|
   send(method, "/auth/:provider/callback") do
     # https://github.com/intridea/omniauth/wiki/Auth-Hash-Schema
-    session[:uid] = env['omniauth.auth']['uid']
-    session[:token] = env['omniauth.auth']['credentials']['token']
+    session[:uid] = env["omniauth.auth"]["uid"]
+    session[:token] = env["omniauth.auth"]["credentials"]["token"]
+
 
     u = User.find_or_create_by(id: session[:uid])
-    u.name = env['omniauth.auth']['info']['name']
-    u.image = env['omniauth.auth']['info']['image']
+    u.name = env["omniauth.auth"]["info"]["name"]
+    u.image = env["omniauth.auth"]["info"]["image"]
+    u.batch = env["omniauth.auth"]["info"]["batch"]["name"]
     u.save
 
     redirect "/"

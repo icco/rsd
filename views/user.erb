@@ -1,4 +1,5 @@
 <h3><img class="w3 v-mid" src="<%= @user.image %>"> <%= @user.name %></h3>
+<h4><%= @user.batch %></h4>
 
 <% if @user.accounts.count == 0 %>
   <p>This user has no accounts. Which is very sad.</p>

@@ -29,6 +29,7 @@ module OmniAuth
           name: "#{raw_info["first_name"]} #{raw_info["last_name"]}",
           email: raw_info["email"],
           image: raw_info["image"],
+          batch: raw_info["batch"],
         }
       end
 
