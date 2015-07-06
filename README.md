@@ -14,3 +14,12 @@ A Recurser Social Directory.
 ```
 env `cat dev_env` rake local
 ```
+
+## Deployment
+
+We host this app on Heroku. The app name is rsd (and thus hosted at https://rsd.herokuapp.com/).
+
+ - We have autodeployment from the `master` branch setup. If you push to master, it will be deployed.
+ - `heroku run rake db:migrate` will update the database on Heroku to the latest version.
+ - `heroku logs` will output the most recent logs.
+ - @icco and @jdherg currently are the only people with access to the Heroku app. Ping them on Zulip or email if you want a command run or to be added to the Heroku app.
