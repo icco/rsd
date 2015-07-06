@@ -104,6 +104,7 @@ post "/edit/:user_id/:service_id" do
 
   @account = Account.where("user_id = ? AND service_id = ?", params[:user_id], params[:service_id]).first
   @account.uri = params["uri"]
+  @account.mobile_uri = params["mobile_uri"]
   @account.save
 
   redirect "/user/" + @params[:user_id]
