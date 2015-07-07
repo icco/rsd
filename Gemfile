@@ -10,6 +10,7 @@ gem "oj"
 gem "omniauth-oauth2" # https://github.com/intridea/omniauth-oauth2
 gem "pg"
 gem "rack-protection", :require => "rack/protection"
+gem "rack-ssl-enforcer"
 gem "rake"
 gem "sinatra"
 gem "sinatra-activerecord", :require => "sinatra/activerecord"

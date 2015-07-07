@@ -11,6 +11,11 @@ configure do
     :production => ENV['DATABASE_URL']
   }
 
+  if !RACK_ENV.eql? :development
+    # Force HTTPS
+    use Rack::SslEnforcer
+  end
+
   url = URI(connections[RACK_ENV])
   options = {
     :adapter => url.scheme,

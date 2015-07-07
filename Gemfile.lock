@@ -46,6 +46,7 @@ GEM
     rack (1.6.4)
     rack-protection (1.5.3)
       rack
+    rack-ssl-enforcer (0.2.8)
     rake (10.4.2)
     shotgun (0.9.1)
       rack (>= 1.0)
@@ -76,6 +77,7 @@ DEPENDENCIES
   omniauth-oauth2
   pg
   rack-protection
+  rack-ssl-enforcer
   rake
   shotgun
   sinatra
