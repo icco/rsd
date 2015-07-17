@@ -1,8 +1,12 @@
-<h3>Add an Account</h1>
+<h3>Add an Account</h3>
 
-<form method="post" action="/add">
+<form method="post" action="/add/account">
   <div>
-    <input class="pas mam w-100" placeholder="Service Name" name="service" type="text"></input>
+    <select class="pas mam w-100" name="service">
+      <% Service.find_each do |service| %>
+        <option value="<%= @service.id %>"><%= @service.name %></option>
+      <% end %>
+    </select>
   </div>
   <div>
     <input class="pas mam w-100" placeholder="Web link to your account" name="uri" type="text"></input>
