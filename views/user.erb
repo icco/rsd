@@ -15,11 +15,16 @@
       <%end %>
     <% else %>
       <% @user.accounts.sort {|a,b| a.service.name <=> b.service.name }.each do |a| %>
+        <li class="mbs"><%= a.service.name %>:
         <% if a.mobile_uri? %>
-          <li class="mbs"><%= a.service.name %>: <a href="<%= a.uri %>">browser</a>, <a href="<%= a.mobile_uri %>">in app</a><a class="mls paxs btn btn--xs btn--blue" href="/edit/<%=  @user.id %>/<%= a.id %>">edit</a><a class="mls paxs btn btn--xs btn--red btn--del" href="/delete/account/<%= a.id %>">x</a></li>
+          <a href="<%= a.uri %>">browser</a>, <a href="<%= a.mobile_uri %>">in app</a>
         <% else %>
-          <li class="mbs"><%= a.service.name %>: <a href="<%= a.uri %>">browser</a><a class="mls paxs btn btn--xs btn--blue" href="/edit/<%=  @user.id %>/<%= a.id %>">edit</a><a class="mls paxs btn btn--xs btn--red btn--del" href="/delete/account/<%= a.id %>">x</a></li>
+          <a href="<%= a.uri %>">browser</a>
         <% end %>
+        <div class="mls pan mvn db">
+          <a href="/edit/<%= @user.id %>/<%= a.id %>">edit</a><a class="mls dark-red" href="/delete/account/<%= a.id %>">delete</a>
+        </div>
+        </li>
       <% end %>
     <% end %>
   </ul>
