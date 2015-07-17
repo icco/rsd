@@ -16,11 +16,19 @@
     <% else %>
       <% @user.accounts.sort {|a,b| a.service.name <=> b.service.name }.each do |a| %>
         <% if a.mobile_uri? %>
-          <li class="mbs"><%= a.service.name %>: <a href="<%= a.uri %>">browser</a>, <a href="<%= a.mobile_uri %>">in app</a><a class="mls paxs btn btn--xs btn--blue" href="/edit/<%= @user.id %>/<%= a.service_id %>">edit</a></li>
+          <li class="mbs"><%= a.service.name %>: <a href="<%= a.uri %>">browser</a>, <a href="<%= a.mobile_uri %>">in app</a><a class="mls paxs btn btn--xs btn--blue" href="/edit/<%=  @user.id %>/<%= a.id %>">edit</a><a class="mls paxs btn btn--xs btn--red btn--del" href="/delete/<%=  @user.id %>/<%= a.id %>">x</a></li>
         <% else %>
-          <li class="mbs"><%= a.service.name %>: <a href="<%= a.uri %>">browser</a><a class="mls paxs btn btn--xs btn--blue" href="/edit/<%= @user.id %>/<%= a.service_id %>">edit</a></li>
+          <li class="mbs"><%= a.service.name %>: <a href="<%= a.uri %>">browser</a><a class="mls paxs btn btn--xs btn--blue" href="/edit/<%=  @user.id %>/<%= a.id %>">edit</a><a class="mls paxs btn btn--xs btn--red btn--del" href="/delete/<%=  @user.id %>/<%= a.id %>">x</a></li>
         <% end %>
       <% end %>
     <% end %>
   </ul>
 <% end %>
+
+<script>
+ document.addEventListener('click', function(e) {
+   if (e.target && e.target.classList && e.target.classList.contains('btn--del')){
+     !confirm('Are you sure you want to remove this account from your profile?') && e.preventDefault();
+   }
+ });
+</script>
