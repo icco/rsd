@@ -104,11 +104,12 @@ post "/edit/:user_id/:service_id" do
   redirect "/user/" + @params[:user_id]
 end
 
-get "/delete/:user_id/:account_id" do
-  error 403 if session[:uid] != params[:user_id].to_i
+get "/delete/account/:account_id" do
+  account = Account.find(params[:account_id])
+  error 403 if session[:uid] != account.user_id
 
-  Account.destroy(params[:account_id]);
-  redirect "/user/" + @params[:user_id]
+  account.destroy();
+  redirect "/user/#{account.user_id}"
 end
 
 get "/service/:name" do
