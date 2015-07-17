@@ -12,11 +12,6 @@ a:active  {
   color: #007BE6;
 }
 
-.grey-out {
-  background-color: #F7F7F7;
-  color: #848484;
-}
-
 .cursor-disabled {
   cursor: not-allowed;
 }
