@@ -2,7 +2,7 @@
 
 <form method="post" action="/edit/<%= @account.user_id %>/<%= @service.id %>">
   <div>
-    <input class="pas mam w-100 grey-out cursor-disabled" placeholder="Service Name" name="service" type="text" value="<%= @service.name %>" readonly="readonly"></input>
+    <input class="pas mam w-100 bg-light-gray cursor-disabled" placeholder="Service Name" name="service" type="text" value="<%= @service.name %>" readonly="readonly"></input>
   </div>
   <div>
     <input class="pas mam w-100" placeholder="Web link to your <% @service.name %> account" name="uri" type="text" value="<%= @account.uri %>"></input>
