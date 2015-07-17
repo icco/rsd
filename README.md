@@ -1,4 +1,4 @@
-# rcdir
+# rsd
 
 A Recurser Social Directory.
 

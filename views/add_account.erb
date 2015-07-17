@@ -3,7 +3,7 @@
 <form method="post" action="/add/account">
   <div>
     <select class="pas mam w-100" name="service">
-      <% Service.find_each do |service| %>
+      <% Service.order(:name).each do |service| %>
         <option value="<%= service.id %>"><%= service.name %></option>
       <% end %>
     </select>
