@@ -75,10 +75,10 @@ get "/user/:id" do
   end
 end
 
-get "/edit/:user_id/:account_id" do
-  error 403 if session[:uid] != params[:user_id].to_i
-
+get "/edit/account/:account_id" do
   @account = Account.find(params[:account_id])
+  error 403 if session[:uid] != @account.user_id
+
   @service = Service.find(@account.service_id)
 
   if @account.nil? or @service.nil?
@@ -88,20 +88,21 @@ get "/edit/:user_id/:account_id" do
   end
 end
 
-post "/edit/:user_id/:account_id" do
-  error 403 if session[:uid] != params[:user_id].to_i
+post "/edit/account/:account_id" do
+  @account = Account.find(params[:account_id])
+  error 403 if session[:uid] != @account.user_id
 
   service_name = params["service"].downcase
   if service_name.empty?
     error 400
   end
 
-  @account = Account.find(params[:account_id])
+
   @account.uri = params["uri"]
   @account.mobile_uri = params["mobile_uri"]
   @account.save
 
-  redirect "/user/" + @params[:user_id]
+  redirect "/user/#{@account.user_id}"
 end
 
 get "/delete/account/:account_id" do
