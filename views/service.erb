@@ -1,6 +1,6 @@
-<img src="<%= @service.icon %>">
+<img alt="<%= @service.name %> favicon" src="data:image/png;base64,<%= @service.icon %>">
 
-<h3><%= @service.name %></h1>
+<h3><%= @service.name %></h3>
 
 <div class="dt">
   <form method="post" action="/add/account">
@@ -17,7 +17,7 @@
 </div>
 
 <% if @service.accounts.count == 0 %>
-  <p>This service has no accounts. Which is very sad, arguably it is also impossible.</p>
+  <p>This service has no accounts. Which is very sad.</p>
 <% else %>
   <ul>
     <% @service.accounts.sort {|a,b| a.user.name <=> b.user.name }.each do |a| %>
