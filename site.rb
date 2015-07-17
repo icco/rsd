@@ -120,11 +120,11 @@ end
 
 post "/add/account" do
   service_id = params["service"]
-  if service_id.empty?
+  if service_id.nil? or service_id.empty?
     error 400
   end
 
-  @service = Service.find(service_id);
+  @service = Service.find(service_id.to_i);
 
   @account = Account.new
   @account.user = @current_user
