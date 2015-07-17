@@ -3,8 +3,9 @@
 <h3><%= @service.name %></h1>
 
 <div class="dt">
-  <form method="post" action="/add">
-    <input class="pas mam w-100" placeholder="Service Name" name="service" value="<%= @service.name %>" type="hidden"></input>
+  <form method="post" action="/add/account">
+    <input name="service" value="<%= @service.id %>" type="hidden"></input>
+
     <div>
       <input class="pas mam w-100" placeholder="Web link to your <%= @service.name %> account" name="uri" type="text"></input>
     </div>
