@@ -16,9 +16,9 @@
     <% else %>
       <% @user.accounts.sort {|a,b| a.service.name <=> b.service.name }.each do |a| %>
         <% if a.mobile_uri? %>
-          <li class="mbs"><%= a.service.name %>: <a href="<%= a.uri %>">browser</a>, <a href="<%= a.mobile_uri %>">in app</a><a class="mls paxs btn btn--xs btn--blue" href="/edit/<%= @user.id %>/<%= a.service_id %>">edit</a></li>
+          <li class="mbs"><%= a.service.name %>: <a href="<%= a.uri %>">browser</a>, <a href="<%= a.mobile_uri %>">in app</a><a class="mls" href="/edit/<%= @user.id %>/<%= a.service_id %>">edit</a></li>
         <% else %>
-          <li class="mbs"><%= a.service.name %>: <a href="<%= a.uri %>">browser</a><a class="mls paxs btn btn--xs btn--blue" href="/edit/<%= @user.id %>/<%= a.service_id %>">edit</a></li>
+          <li class="mbs"><%= a.service.name %>: <a href="<%= a.uri %>">browser</a><a class="mls" href="/edit/<%= @user.id %>/<%= a.service_id %>">edit</a></li>
         <% end %>
       <% end %>
     <% end %>

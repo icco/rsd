@@ -16,10 +16,6 @@ a:active  {
   cursor: not-allowed;
 }
 
-.btn--xs {
-  font-size: 10px;
-}
-
 .btn--red:link, .btn--red:visited {
   background-color: #ff2233;
   border-color: #ff5566;
