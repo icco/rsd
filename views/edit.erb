@@ -1,6 +1,6 @@
 <h3>Edit your <%= @service.name %> details</h1>
 
-<form method="post" action="/edit/<%= @account.user_id %>/<%= @service.id %>">
+<form method="post" action="/edit/account/<%= @account.id %>">
   <div>
     <input class="pas mam w-100 bg-light-gray cursor-disabled" placeholder="Service Name" name="service" type="text" value="<%= @service.name %>" readonly="readonly"></input>
   </div>
