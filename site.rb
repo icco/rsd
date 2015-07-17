@@ -114,17 +114,17 @@ get "/service/:name" do
   end
 end
 
-get "/add" do
-  erb :add
+get "/add/account" do
+  erb :add_account
 end
 
-post "/add" do
-  service_name = params["service"].downcase
-  if service_name.empty?
+post "/add/account" do
+  service_id = params["service"]
+  if service_id.empty?
     error 400
   end
-  @service = Service.find_or_create_by(name: service_name)
-  @service.save
+
+  @service = Service.find(service_id);
 
   @account = Account.new
   @account.user = @current_user
@@ -135,7 +135,25 @@ post "/add" do
   @account.mobile_uri = params["mobile_uri"]
   @account.save
 
+  redirect "/user/#{session[:uid]}"
+end
+
+
+get "/add/service" do
+  erb :add_service
+end
+
+post "/add/service" do
+  service_name = params["service"].downcase
+  if service_name.empty?
+    error 400
+  end
+
+  @service = Service.find_or_create_by(name: service_name)
+  @service.save
+
   redirect "/"
+
 end
 
 %w(get post).each do |method|
