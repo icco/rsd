@@ -75,11 +75,11 @@ get "/user/:id" do
   end
 end
 
-get "/edit/:user_id/:service_id" do
+get "/edit/:user_id/:account_id" do
   error 403 if session[:uid] != params[:user_id].to_i
 
-  @account = Account.where("user_id = ? AND service_id = ?", params[:user_id], params[:service_id]).first
-  @service = Service.find(params[:service_id])
+  @account = Account.find(params[:account_id])
+  @service = Service.find(@account.service_id)
 
   if @account.nil? or @service.nil?
     error 404
@@ -88,7 +88,7 @@ get "/edit/:user_id/:service_id" do
   end
 end
 
-post "/edit/:user_id/:service_id" do
+post "/edit/:user_id/:account_id" do
   error 403 if session[:uid] != params[:user_id].to_i
 
   service_name = params["service"].downcase
@@ -96,7 +96,7 @@ post "/edit/:user_id/:service_id" do
     error 400
   end
 
-  @account = Account.where("user_id = ? AND service_id = ?", params[:user_id], params[:service_id]).first
+  @account = Account.find(params[:account_id])
   @account.uri = params["uri"]
   @account.mobile_uri = params["mobile_uri"]
   @account.save
