@@ -11,7 +11,7 @@ configure do
     :production => ENV['DATABASE_URL']
   }
 
-  if !RACK_ENV.eql? :development
+  unless RACK_ENV.eql? :development
     # Force HTTPS
     use Rack::SslEnforcer
   end
@@ -109,7 +109,7 @@ get "/delete/account/:account_id" do
   account = Account.find(params[:account_id])
   error 403 if session[:uid] != account.user_id
 
-  account.destroy();
+  account.destroy
   redirect "/user/#{account.user_id}"
 end
 
@@ -133,7 +133,7 @@ post "/add/account" do
     error 400
   end
 
-  @service = Service.find(service_id.to_i);
+  @service = Service.find(service_id.to_i)
 
   @account = Account.new
   @account.user = @current_user
@@ -153,12 +153,17 @@ get "/add/service" do
 end
 
 post "/add/service" do
-  service_name = params["service"].downcase
+  service_name = params["name"].downcase
   if service_name.empty?
     error 400
   end
 
   @service = Service.find_or_create_by(name: service_name)
+  url = params["url"]
+  # The URI parsing library doesn't handle URIs without protocols. Sigh.
+  url = "http://#{url}" unless url.match '//'
+  @service["url"] = url
+
   @service.save
 
   redirect "/"
