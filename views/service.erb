@@ -1,13 +1,13 @@
-<img alt="<%= @service.name %> favicon" src="data:image/png;base64,<%= @service.icon %>">
+<img alt="<%= @service.name %> favicon" src="data:image/png;base64,<%= @service.load_icon %>">
 
 <h3><%= @service.name %></h3>
 
 <div class="dt">
   <form method="post" action="/add/account">
-    <input name="service" value="<%= @service.id %>" type="hidden"></input>
+    <input name="service" value="<%= @service.id %>" type="hidden" />
 
     <div>
-      <input class="pas mam w-100" placeholder="Web link to your <%= @service.name %> account" name="uri" type="text"></input>
+      <input class="pas mam w-100" placeholder="Web link to your <%= @service.name %> account" name="uri" type="text" />
     </div>
     <div>
       <input class="pas mam w-100" placeholder="Mobile specific link e.g., rdio://people/username" name="mobile_uri" type="text" value=""/>
