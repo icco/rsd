@@ -109,7 +109,7 @@ get "/delete/account/:account_id" do
   account = Account.find(params[:account_id])
   error 403 if session[:uid] != account.user_id
 
-  account.destroy();
+  account.destroy
   redirect "/user/#{account.user_id}"
 end
 
@@ -133,7 +133,9 @@ post "/add/account" do
     error 400
   end
 
-  @service = Service.find(service_id.to_i);
+  @service = Service.find(service_id.to_i)
+
+  error 404 if @service.nil?
 
   @account = Account.new
   @account.user = @current_user
