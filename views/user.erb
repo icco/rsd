@@ -22,7 +22,7 @@
           <a href="<%= a.uri %>">browser</a>
         <% end %>
         <div class="mls pan mvn db">
-          <a href="/edit/<%= @user.id %>/<%= a.id %>">edit</a><a class="mls dark-red" href="/delete/account/<%= a.id %>">delete</a>
+          <a class="hover-light-green green" href="/edit/<%= @user.id %>/<%= a.id %>">edit</a> <a class="mls dark-red hover-red verify" href="/delete/account/<%= a.id %>">delete</a>
         </div>
         </li>
       <% end %>
@@ -32,7 +32,7 @@
 
 <script>
  document.addEventListener('click', function(e) {
-   if (e.target && e.target.classList && e.target.classList.contains('btn--del')){
+   if (e.target && e.target.classList && e.target.classList.contains('verify')){
      !confirm('Are you sure you want to remove this account from your profile?') && e.preventDefault();
    }
  });
