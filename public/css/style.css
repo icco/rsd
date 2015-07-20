@@ -1,0 +1,28 @@
+a {
+  transition: color .4s;
+  color: #265C83;
+  text-decoration: none;
+}
+
+a,
+a:visited { color: #265C83; }
+a:hover   { color: #7FDBFF; }
+a:active  {
+  transition: color .3s;
+  color: #007BE6;
+}
+
+.cursor-disabled {
+  cursor: not-allowed;
+}
+
+.btn--red:link, .btn--red:visited {
+  background-color: #ff2233;
+  border-color: #ff5566;
+  color: #fff;
+}
+
+.btn--red:hover {
+  background-color: #ff6677;
+  border-color: #ff5566;
+}
